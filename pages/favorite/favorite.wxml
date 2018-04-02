@@ -1,0 +1,19 @@
+<!--pages/favorite/favorite.wxml-->
+<view wx:if="{{show_no_data_tip}}" class="no-data-tip">暂无收藏的商品</view>
+<view class="goods-list">
+    <navigator url="/pages/goods/goods?id={{item.goods_id}}" open-type="navigate" wx:for="{{goods_list}}"
+               class="goods-item">
+        <image class="goods-pic" src="{{item.goods_pic}}" mode="aspectFill"/>
+        <view class="goods-info">
+            <text class="goods-name">{{item.name}}</text>
+            <text class="goods-price">￥{{item.price}}</text>
+        </view>
+    </navigator>
+</view>
+<view class="spinner loading-bar {{show_loading_bar?'active':''}}">
+    <view class="rect1"></view>
+    <view class="rect2"></view>
+    <view class="rect3"></view>
+    <view class="rect4"></view>
+    <view class="rect5"></view>
+</view>

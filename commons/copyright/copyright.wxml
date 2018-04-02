@@ -1,0 +1,7 @@
+<view class="flex-y-center flex-x-center flex-col" style="padding: 50rpx"
+      wx:if="{{store.copyright||store.copyright_pic_url}}">
+    <view wx:if="{{store.copyright_pic_url}}">
+        <image src="{{store.copyright_pic_url}}" style="width: 200rpx;height: 100rpx"></image>
+    </view>
+    <view wx:if="{{store.copyright}}" style="color: rgba(0,0,0,.3);font-size: 9pt;">{{store.copyright}}</view>
+</view>

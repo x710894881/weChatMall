@@ -1,0 +1,5 @@
+<!--pages/test/test.wxml-->
+<text>pages/test/test.wxml</text>
+<form bindsubmit="formSubmit" report-submit="true">
+    <button formType="submit">submit</button>
+</form>

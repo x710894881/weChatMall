@@ -1,0 +1,153 @@
+/* goods.wxss */
+@import "../../wxParse/wxParse.wxss";
+
+.share-tip {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background: rgba(0, 0, 0, .65);
+}
+
+.bar-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    box-shadow: 0 0 3rpx rgba(0,0,0,.2);
+}
+
+.bar-bottom > view {
+    color: #fff;
+    height: 120rpx;
+    text-align: center;
+}
+
+.bar-bottom .add-cart{
+    background: #f39800;
+}
+
+.bar-bottom .buy-now{
+    background: #ff4544;
+}
+
+.bar-bottom .bar-bottom-btn{
+    background: #fff;
+    border-left: 1rpx solid #e3e3e3;
+    font-size: 9pt;
+    color: #888;
+    padding: 0 32rpx;
+    text-align: center;
+}
+
+.bar-bottom .bar-bottom-btn image{
+    width: 42rpx;
+    height: 42rpx;
+}
+
+.attr-picker{
+    position: fixed;
+    bottom: 120rpx;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.5);
+}
+
+.attr-picker .content-box{
+    width: 100%;
+    background: #fff;
+    position: fixed;
+    bottom: 100rpx;
+    padding: 30rpx 24rpx;
+}
+
+.attr-picker .attr-group{
+    margin-bottom: 6rpx;
+}
+.attr-picker .attr-group-name{
+    margin-bottom: 20rpx;
+}
+.attr-picker .attr-item{
+    display: inline-block;
+    margin: 0 30rpx 30rpx 0;
+    background: #f7f7f7;
+    border-radius: 10rpx;
+    padding: 15rpx 30rpx;
+}
+
+.attr-picker .attr-item.active{
+    background: #ff4544;
+    color: #fff;
+}
+
+.goods-image-swiper {
+    height: 700rpx;
+}
+
+.goods-image {
+    width: 100%;
+    height: 100%;
+}
+
+.goods-detail{
+    box-sizing: border-box;
+    padding: 24rpx;
+    background: #fff;
+}
+.goods-detail text,
+.goods-detail image,
+.goods-detail view{
+    box-sizing: border-box;
+    max-width: 100%;
+}
+.number-input-box{
+    height: 80rpx;
+    border: 1rpx solid #ddd;
+    border-radius: 10rpx;
+    width: 220rpx;
+}
+.number-input-box .number-input{
+    height: 100%;
+    border: 1rpx solid #ddd;
+    border-top: none;
+    border-bottom: none;
+    text-align: center;
+}
+.number-input-box .number-btn{
+    width: 200rpx;
+    text-align: center;
+    line-height: 78rpx;
+}
+
+.cart-nav{
+    position: fixed;
+    top:32rpx;
+    right: 24rpx;
+    background: rgba(255,255,255,.5);
+    font-size: 0;
+    padding: 20rpx;
+    border-radius: 999rpx;
+    box-shadow: 0 1rpx 3rpx rgba(0,0,0,.2);
+    z-index: 100;
+}
+.cart-nav image{
+    width: 42rpx;
+    height: 42rpx;
+}
+.check-list{
+    padding: 32rpx 24rpx;
+}
+.check-item{
+    margin-right: 32rpx;
+    font-size: 9pt;
+}
+.check-item image{
+    width: 34rpx;
+    height: 34rpx;
+    margin-right: 8rpx;
+}

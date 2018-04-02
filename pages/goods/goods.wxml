@@ -1,0 +1,156 @@
+<!--goods.wxml-->
+<view wx:if="{{show_share_tip}}" class="share-tip" bindtap="hideShareTip">
+    <image src="/images/img-share-tip.png" style="width: 380rpx;float: right;margin: 50rpx 100rpx"
+           mode="widthFix"></image>
+</view>
+<view class="attr-picker" wx:if="{{show_attr_picker}}">
+    <view class="content-box">
+        <view class="flex-row">
+            <view class="flex-grow-0" style="overflow: visible">
+                <image mode="aspectFill" style="width: 200rpx;height: 200rpx" src="{{goods.pic_list[0].pic_url}}"/>
+            </view>
+            <view class="flex-grow-1" style="padding: 0 36rpx">
+                <view style="color:#ff4544;margin-bottom: 36rpx">￥{{goods.price}}</view>
+                <view class="attr-group" wx:for="{{attr_group_list}}" wx:for-item="attr_group"
+                      wx:if="{{attr_group.attr_list.length>0}}">
+                    <view class="attr-group-name">{{attr_group.attr_group_name}}</view>
+                    <view class="attr-list">
+                        <text class="attr-item {{item.checked?'active':''}}"
+                              wx:for="{{attr_group.attr_list}}"
+                              data-group-id="{{attr_group.attr_group_id}}"
+                              data-id="{{item.attr_id}}"
+                              bindtap="attrClick">{{item.attr_name}}
+                        </text>
+                    </view>
+                </view>
+                <view style="margin-bottom: 36rpx">
+                    <view style="margin-bottom: 20rpx">数量</view>
+                    <view class="flex-row">
+                        <view class="flex-grow-0 flex-row number-input-box">
+                            <text class="flex-grow-0 number-btn number-sub" bindtap="numberSub">-</text>
+                            <input class="flex-grow-1 number-input" value="{{form.number}}" type="number" step="1"
+                                   min="1"
+                                   bindblur="numberBlur"/>
+                            <text class="flex-grow-0 number-btn number-add" bindtap="numberAdd">+</text>
+                        </view>
+                        <view class="flex-grow-1 flex-y-center" style="font-size: 9pt;margin-left: 20rpx">
+                            库存{{goods.num}}件
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="flex-grow-0" style="overflow: visible">
+                <view bindtap="hideAttrPicker"
+                      style="display:inline-block;padding: 20rpx;">
+                    <image style="width: 30rpx;height: 30rpx" src="/images/icon-close.png"/>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view style="padding-bottom: 120rpx">
+    <swiper class="goods-image-swiper" autoplay="true" interval="5000" duration="300" indicator-dots="true"
+            circular="true">
+        <block wx:for="{{goods.pic_list}}">
+            <swiper-item>
+                <image bindtap="onGoodsImageClick" data-index="{{index}}" class="goods-image" src="{{item.pic_url}}"
+                       mode="aspectFill"/>
+            </swiper-item>
+        </block>
+    </swiper>
+    <view class="goods-info" style="background: #fff;padding:32rpx 24rpx;border-bottom: 1rpx solid #eee ">
+        <view style="font-weight: bold;margin-bottom: 24rpx">{{goods.name}}</view>
+        <view class="flex-row flex-y-center">
+            <view class="flex-grow-1">
+                <text class="flex-row flex-y-center"
+                      style="font-weight: bold;color: #ff4544;margin-right: 30rpx;display: inline-block;">
+                    <text style="font-size: 9pt;display: inline-block;">￥</text>
+                    <text style="display: inline-block;">{{goods.price}}</text>
+                </text>
+                <text style="font-size: 9pt;color: #888;display: inline-block;">已成交{{goods.sales_volume}}笔</text>
+            </view>
+            <view class="flex-grow-0">
+                <button open-type="share"
+                        plain="true"
+                        style="line-height: normal;padding: 10rpx;border: none;background: none;border-radius: 0;box-shadow: none;display: inline-block;font-size: 0">
+                    <image style="width: 40rpx;height: 40rpx" src="/images/icon-share.png"/>
+                </button>
+            </view>
+        </view>
+    </view>
+    <view class="bg-white mb-20 flex-row check-list">
+        <view class="check-item flex-y-center">
+            <image src="/images/icon-check.png"></image>
+            <text>正品保障</text>
+        </view>
+        <view class="check-item flex-y-center">
+            <image src="/images/icon-check.png"></image>
+            <text>7天退换</text>
+        </view>
+        <view class="check-item flex-y-center">
+            <image src="/images/icon-check.png"></image>
+            <text>发票</text>
+        </view>
+    </view>
+    <view bindtap="showAttrPicker" class="flex-row flex-y-center"
+          style="background: #fff;padding:0 24rpx;margin-bottom: 20rpx;height: 100rpx;">
+        <view class="flex-grow-1 flex-row flex-y-center">
+            <text>选择</text>
+            <text style="margin-left: 40rpx;font-size: 9pt;color: #888888">规格</text>
+        </view>
+        <view class="flex-grow-0">
+            <image style="width: 16rpx;height: 26rpx" src="/images/icon-jiantou-r.png"/>
+        </view>
+    </view>
+    <view class="goods-detail">
+        <import src="../../wxParse/wxParse.wxml"/>
+        <template is="wxParse" data="{{wxParseData:detail.nodes}}"/>
+    </view>
+</view>
+<navigator url="/pages/cart/cart" class="cart-nav" open-type="switchTab">
+    <image src="/images/nav-icon-cart.png"></image>
+</navigator>
+<view class="flex-row bar-bottom">
+    <button wx:if="{{store.show_customer_service==1}}" class="flex-grow-0 flex-y-center bar-bottom-btn"
+            open-type="contact"
+            plain="true"
+            style="padding: 0 32rpx;border: none;margin: 0;color: #888;font-size: 9pt;line-height: normal;border-radius: 0">
+        <view>
+            <view>
+                <image src="/images/icon-user-kf.png" style="width: 42rpx;height: 42rpx"></image>
+            </view>
+            <view>客服</view>
+        </view>
+    </button>
+
+    <navigator class="flex-grow-0 flex-y-center bar-bottom-btn" url="/pages/index/index" open-type="switchTab">
+        <view>
+            <view>
+                <image src="/images/icon-store.png"></image>
+            </view>
+            <view>首页</view>
+        </view>
+    </navigator>
+
+    <view wx:if="{{goods.is_favorite && goods.is_favorite==1}}" class="flex-grow-0 flex-y-center bar-bottom-btn"
+          bindtap="favoriteRemove">
+        <view style="overflow: visible">
+            <view>
+                <image src="/images/icon-favorite-active.png"></image>
+            </view>
+            <view style="margin: 0 -12rpx">已收藏</view>
+        </view>
+    </view>
+
+    <view wx:else class="flex-grow-0 flex-y-center bar-bottom-btn" bindtap="favoriteAdd">
+        <view>
+            <view>
+                <image src="/images/icon-favorite.png"></image>
+            </view>
+            <view>收藏</view>
+        </view>
+    </view>
+
+    <view class="flex-grow-1 flex-y-center flex-x-center add-cart" bindtap="addCart">加入购物车</view>
+    <view class="flex-grow-1 flex-y-center flex-x-center buy-now" bindtap="buyNow">立即购买</view>
+</view>

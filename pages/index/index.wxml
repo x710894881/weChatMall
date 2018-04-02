@@ -1,0 +1,58 @@
+<view style="position: relative">
+    <swiper class="banner" autoplay="true" interval="5000" duration="300" indicator-dots="true" circular="true">
+        <block wx:for="{{banner_list}}" wx:key="index">
+            <swiper-item>
+                <navigator url="{{item.imgUrl}}">
+                    <view class="slide-title">{{item.imgText}}</view>
+                    <image src="{{item.imgUrl}}" class="slide-image" mode="aspectFill"/>
+                </navigator>
+            </swiper-item>
+        </block>
+    </swiper>
+
+    <view class="search-block">
+        <navigator url="/pages/search/search">
+            <image src="/images/icon-search.png"/>
+            <text>搜索</text>
+        </navigator>
+    </view>
+</view>
+<view class="nav-icon-list flex-row" wx:if="{{nav_icon_list&&nav_icon_list.length>0}}">
+    <view class="flex-grow-0 nav-icon" wx:for="{{nav_icon_list}}">
+        <navigator url="{{item.url}}" open-type="{{item.open_type}}">
+            <image src="{{item.pic_url}}"></image>
+            <view>{{item.name}}</view>
+        </navigator>
+    </view>
+</view>
+
+<block wx:for="{{cat_list}}" wx:for-index="cat_index" wx:for-item="cat">
+    <view wx:if="{{cat.goods_list.length>0}}"
+          style="background: #fff;margin-bottom: 20rpx;width:100%;overflow-x: hidden;">
+        <view class="title-bar flex-y-center flex-x-center">
+            <view class="title-line"></view>
+            <view class="title flex-y-center">
+                <image src="{{cat.pic_url}}" mode="aspectFill"></image>
+                <text>{{cat.name}}</text>
+            </view>
+            <view class="title-line"></view>
+            <navigator class="flex-y-center"
+                       data-url="/pages/list/list"
+                       data-reload="true"
+                       data-options='{"cat_id":{{cat.id}}}'
+                       bindtap="openListPage">
+                <text>更多</text>
+                <image src="/images/icon-jiantou-r.png"/>
+            </navigator>
+        </view>
+        <view class="goods-list">
+            <navigator wx:for="{{cat.goods_list}}" wx:for-index="goods_index" wx:for-item="goods" class="goods-item"
+                       url="/pages/goods/goods?id={{goods.id}}">
+                <image src="{{goods.pic_url}}" mode="aspectFill"/>
+                <text class="goods-name">{{goods.name}}</text>
+                <text class="goods-price">￥{{goods.price}}</text>
+            </navigator>
+        </view>
+    </view>
+</block>
+<include src="/commons/copyright/copyright.wxml"/>
